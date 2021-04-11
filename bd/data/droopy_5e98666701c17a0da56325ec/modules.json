@@ -1,0 +1,22 @@
+[
+  {
+    "module_id": {
+      "$oid": "5e96326701c17a0da56325ec"
+    },
+    "custom_name": "Propietarios"
+  },
+  {
+    "module_id": {
+      "$oid": "5112233701c17a0da56325ec"
+    },
+    "custom_name": "Eventos",
+    "enable": true
+  },
+  {
+    "module_id": {
+      "$oid": "51122aa306c17a0da56325ec"
+    },
+    "custom_name": "Facturación",
+    "enable": true
+  }
+]

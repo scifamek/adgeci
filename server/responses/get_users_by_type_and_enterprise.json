@@ -1,0 +1,85 @@
+{
+  "schema": {
+    "_id": {
+      "$oid": "5e38569701c17a0da5e1c5ec"
+    },
+    "enterprise_id": {
+      "$oid": "5e98666701c17a0da5e1c5ec"
+    },
+    "collection": "users",
+    "definition": {
+      "_id": {
+        "display": "Identificador",
+        "usable": true,
+        "visible": false,
+        "type": "ObjectId"
+      },
+      "enterprises_id": {
+        "display": "Empresas",
+        "usable": true,
+        "visible": false,
+        "type": "[ObjectId]"
+      },
+      "name": {
+        "display": "Nombre",
+        "usable": true,
+        "visible": true,
+        "type": "string"
+      },
+      "last_name": {
+        "display": "Apellido",
+        "usable": true,
+        "visible": true,
+        "type": "string"
+      },
+      "email": {
+        "display": "Email",
+        "usable": true,
+        "visible": true,
+        "type": "string"
+      }
+    }
+  },
+  "users": [
+    {
+      "_id": {
+        "$oid": "5e38569701878af0da5e1c5ec"
+      },
+      "enterprises_id": [
+        {
+          "_id": {
+            "$oid": "5e98666701c17a0da56325ec"
+          },
+          "schema": {
+            "$oid": "5e38569701c17a0da5e1c5ec"
+          }
+        }
+      ],
+      "properties": {
+        "name": "Juanita",
+        "last_name": "Posada Urrea",
+        "email": "juanita.posadaurrea@gmail.com"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "5e38569701c17a0da5e1c5ec"
+      },
+      "enterprises_id": [
+        {
+          "_id": {
+            "$oid": "5e98666701c17a0da56325ec"
+          },
+          "schema": {
+            "$oid": "5e38569701c17a0da5e1c5ec"
+          }
+        }
+      ],
+      "properties": {
+        "name": "Sergio",
+        "last_name": "Posada Urrea",
+        "email": "sergio.posadaurrea@gmail.com"
+      }
+    }
+  ]
+}

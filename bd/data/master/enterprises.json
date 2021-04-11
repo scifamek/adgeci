@@ -1,0 +1,10 @@
+[
+    {
+        "_id": {
+            "$oid": "5e98666701c17a0da56325ec"
+        },
+        "name": "Droopy",
+        "database_name":"droopy_5e98666701c17a0da56325ec",
+        "NIT":"123456789"
+    }
+]

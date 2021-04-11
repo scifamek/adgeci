@@ -1,0 +1,10 @@
+[
+	{
+		"_id": {
+			"$oid": "f59758c04b1411eba63e70c9"
+		},
+		"properties": {
+			"name": "Vacunación"
+		}
+	}
+]

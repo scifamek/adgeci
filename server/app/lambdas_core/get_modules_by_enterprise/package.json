@@ -1,0 +1,17 @@
+{
+  "name": "adgeci_server",
+  "version": "1.0.0",
+  "description": "Project that contains the logic in lambda functions implementations.",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "lambda-local -l index.js -e event.json -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}"
+  },
+  "author": "Scifamek",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.6.3"
+  }
+}

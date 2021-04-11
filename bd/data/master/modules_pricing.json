@@ -1,0 +1,30 @@
+[
+  {
+    "module_id": {
+      "$oid": "5e96326701c17a0da56325ec"
+    },
+    "initial_date": "01/01/2020",
+    "final_date": "01/01/2020",
+    "base_price": "4.5",
+    "currency": "USD"
+  },
+
+  {
+    "module_id": {
+      "$oid": "5112233701c17a0da56325ec"
+    },
+    "initial_date": "01/01/2020",
+    "final_date": "01/01/2020",
+    "base_price": "4.5",
+    "currency": "USD"
+  },
+  {
+    "module_id": {
+      "$oid": "51122aa306c17a0da56325ec"
+    },
+    "initial_date": "01/01/2020",
+    "final_date": "01/01/2020",
+    "base_price": "4.5",
+    "currency": "USD"
+  }
+]
