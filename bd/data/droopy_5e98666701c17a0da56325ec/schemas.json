@@ -1,0 +1,245 @@
+[
+	{
+		"_id": {
+			"$oid": "5e38569701c17a0da5e1c5ec"
+		},
+		"collection": "tutors",
+		"type": "entity",
+		"presentation": {
+			"icon": "supervisor_account"
+		},
+		"display": "Tutores",
+		"repr": ["first_name", "second_name", "first_last_name", "second_last_name"],
+		"definition": {
+			"_id": {
+				"display": "Identificador",
+				"usable": true,
+				"visible": false,
+				"type": "ObjectId",
+				"required": true
+			},
+			"first_name": {
+				"display": "Primer Nombre",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"second_name": {
+				"display": "Segundo Nombre",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"first_last_name": {
+				"display": "Primer Apellido",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"second_last_name": {
+				"display": "Segundo Apellido",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"pets_id": {
+				"display": "Mascotas",
+				"usable": true,
+				"visible": true,
+				"type": "[ObjectId]",
+				"relationship": "pets",
+				"required": true
+			},
+			"address": {
+				"display": "Dirección",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"phones": {
+				"display": "Teléfono",
+				"usable": true,
+				"visible": true,
+				"type": "[string]",
+				"required": true
+			},
+			"email": {
+				"display": "Email",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "5e38569701c17a0da5e1c5e1"
+		},
+		"collection": "pets",
+		"type": "entity",
+		"presentation": {
+			"icon": "pest_control_rodent"
+		},
+		"display": "Mascotas",
+		"repr": ["name", "race"],
+		"definition": {
+			"_id": {
+				"display": "Identificador",
+				"usable": true,
+				"visible": false,
+				"type": "string",
+				"required": true
+			},
+			"name": {
+				"display": "Name",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"tutors_id": {
+				"display": "Tutores",
+				"usable": true,
+				"visible": true,
+				"type": "[ObjectId]",
+				"relationship": "tutors",
+				"required": true
+			},
+			"species": {
+				"display": "Especie",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"race": {
+				"display": "Raza",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"gender": {
+				"display": "Género",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"age": {
+				"display": "Edad",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			},
+			"unit_age": {
+				"display": "Unidad",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "5e38569701c17a0da666c5e1"
+		},
+		"collection": "appointments",
+		"type": "entity",
+		"presentation": {
+			"icon": "today"
+		},
+		"display": "Citas",
+		"repr": ["day", "month", "year"],
+		"definition": {
+			"_id": {
+				"display": "Identificador",
+				"usable": true,
+				"visible": false,
+				"type": "string",
+				"required": true
+			},
+			"day": {
+				"display": "Día",
+				"usable": true,
+				"visible": true,
+				"type": "number",
+				"required": true
+			},
+			"month": {
+				"display": "Mes",
+				"usable": true,
+				"visible": true,
+				"type": "number",
+				"required": true
+			},
+			"year": {
+				"display": "Año",
+				"usable": true,
+				"visible": true,
+				"type": "number",
+				"required": true
+			},
+			"pet_id": {
+				"display": "Mascota",
+				"usable": true,
+				"visible": true,
+				"relationship": "pets",
+				"type": "ObjectId",
+				"required": true
+			},
+			"appointment_type_id": {
+				"display": "Tipo de cita",
+				"usable": true,
+				"visible": true,
+				"relationship": "pets",
+				"type": "ObjectId",
+				"required": true
+			},
+			"medicines": {
+				"display": "Medicamentos",
+				"usable": true,
+				"visible": true,
+				"relationship": "pets",
+				"type": "[ObjectId]",
+				"required": true
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "5e38569701c1888da666c5e1"
+		},
+		"collection": "appointment_types",
+		"type": "entity",
+		"presentation": {
+			"icon": "text_fields"
+		},
+		"display": "Tipos de Citas",
+		"repr": ["name"],
+		"definition": {
+			"_id": {
+				"display": "Identificador",
+				"usable": true,
+				"visible": false,
+				"type": "string",
+				"required": true
+			},
+			"name": {
+				"display": "Nombre",
+				"usable": true,
+				"visible": true,
+				"type": "string",
+				"required": true
+			}
+		}
+	}
+]

@@ -1,0 +1,39 @@
+{
+  "schema": {
+    "_id": {
+      "$oid": "5e38569701c17a0da5e1c5ec"
+    },
+    "enterprise_id": {
+      "$oid": "5e98666701c17a0da5e1c5ec"
+    },
+    "collection": "users",
+    "schema": {
+      "_id": "ObjectId",
+      "enterprise_id": "ObjectId",
+      "name": "string",
+      "last_name": "string"
+    }
+  },
+  "users": [
+    {
+      "_id": {
+        "$oid": "5e38569701c17a0da5e1c5ec"
+      },
+      "enterprises_id": [
+        {
+          "_id": {
+            "$oid": "5e98666701c17a0da56325ec"
+          },
+          "schema": {
+            "$oid": "5e38569701c17a0da5e1c5ec"
+          }
+        }
+      ],
+      "properties": {
+        "name": "Sergio",
+        "last_name": "Posada Urrea",
+        "email": "sergio.posadaurrea@gmail.com"
+      }
+    }
+  ]
+}

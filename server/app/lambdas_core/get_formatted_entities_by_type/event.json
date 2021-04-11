@@ -1,0 +1,16 @@
+{
+  "enterprise_id": "5e98666701c17a0da56325ec",
+   "collection": "tutors",
+     "page" : 0,
+   "sizePage": 10,
+   "definition": [
+         "first_name",
+         "second_name",
+         "first_last_name",
+         "second_last_name",
+         "pets_id",
+         "address",
+         "phones",
+         "email"
+     ]
+ }

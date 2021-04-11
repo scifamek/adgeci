@@ -1,0 +1,796 @@
+[
+	{
+		"_id": {
+			"$oid": "5e38569701c17e0da5e1c5ec"
+		},
+		"schema_id": {
+			"$oid": "5e38569701c17a0da5e1c5ec"
+		},
+		"definition": {
+			"_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"first_name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-label",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"second_name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Sebastián",
+						"label": "Segundo Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"first_last_name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"second_last_name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Segundo Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"pets_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"address": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"phones": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"email": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Raúl",
+						"label": "Primer Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "0e38569701c17a0da5e1c5e1"
+		},
+		"schema_id": {
+			"$oid": "5e38569701c17a0da5e1c5e1"
+		},
+		"definition": {
+			"_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-label",
+					"data": {
+						"icon": "settings_input_hdmi",
+						"placeholder": "Meneses",
+						"label": "Identificador",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "person",
+						"placeholder": "Meneses",
+						"label": "Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"tutors_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-label",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Tutores",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 1,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"species": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-select",
+					"data": {
+						"icon": "egg",
+						"placeholder": "Perro",
+						"label": "Especie",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 2,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 4
+						}
+					}
+				}
+			},
+			"race": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "pets",
+						"placeholder": "Labrador",
+						"label": "Raza",
+						"hint": "",
+						"type": "text-area"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 2,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 4
+						}
+					}
+				}
+			},
+			"gender": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "star_half",
+						"placeholder": "Macho",
+						"label": "Género",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 2,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 4
+						}
+					}
+				}
+			},
+			"age": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "calendar_today",
+						"placeholder": "Meneses",
+						"label": "Edad",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 3,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"unit_age": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "whatshot",
+						"placeholder": "Meneses",
+						"label": "Medida de tiempo",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 3,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "5e31169701c17a0da666c5e1"
+		},
+		"schema_id": {
+			"$oid": "5e38569701c17a0da666c5e1"
+		},
+		"definition": {
+			"_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"day": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"month": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"year": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"pet_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"appointment_type_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"medicines": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Primer Apellido",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		"_id": {
+			"$oid": "5e38569701c188456666c5e1"
+		},
+		"schema_id": {
+			"$oid": "5e38569701c1888da666c5e1"
+		},
+		"definition": {
+			"_id": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-label",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Meneses",
+						"label": "Identificador",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			},
+			"name": {
+				"validators": ["$noEmpty"],
+				"component": {
+					"name": "crubu-input",
+					"data": {
+						"icon": "grading",
+						"placeholder": "Vacunación",
+						"label": "Nombre",
+						"hint": "",
+						"type": "input"
+					}
+				},
+				"container": [""],
+				"responsive": {
+					"row": 0,
+					"col": {
+						"xs": {
+							"layout": 12,
+							"offset": 0
+						},
+						"md": {
+							"layout": 4
+						},
+						"default": {
+							"layout": 6
+						}
+					}
+				}
+			}
+		}
+	}
+]
