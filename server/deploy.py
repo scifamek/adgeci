@@ -30,7 +30,6 @@ def create_lambda_body(lambda_name):
         repositoriesFull = []
         enviroment = ''
         for type_repository in CONFIG_OBJECT[lambda_name]['repositories']:
-            #os.makedirs(new_path_dir,0o777,True)
             for repo in CONFIG_OBJECT[lambda_name]['repositories'][type_repository]:
                 enviroment += get_single_name(type_repository+'/'+repo) + ','
                 repositories.append(repo)
