@@ -4,7 +4,7 @@ import json
 import uuid
 import copy
 import re
-final_row = 53916
+final_row = 55000
 final_column = "A:J"
 
 chunk = 0
@@ -132,25 +132,35 @@ def split_date(age:str):
             {
                 'prev': 'Abrill',
                 'after':'Abril'
+            },
+            {
+                'prev': 'Noviembe',
+                'after':'Noviembre'
             }
 
         ]
         for i in mistakes:
             groups[0] = groups[0].replace(i['prev'],i['after'])
+            groups[0] = groups[0].replace(i['prev'].capitalize(),i['after'].capitalize()).capitalize()
+            groups[0] = groups[0].replace(i['prev'].upper(),i['after'].capitalize()).capitalize()
         # groups[0] = groups[0].capitalize().replace(' ','').replace('Noviembe','Noviembre').replace('Dic','Diciembre').replace('Diciembreiembre','Diciembre').replace('Sept','Septiembre').replace('Septiembreiembre','Septiembre').replace('Septiembreimebre','Septiembre').replace('Septiembreembre','Septiembre').replace('Nov','Noviembre').replace('Noviembreiembre','Noviembre').replace('Septimebre','Septiembre')
         if(groups[2] != None):
-            groups[2] = groups[2].replace('t','').replace('o','')
+            groups[2] = groups[2].replace('t','').replace('o','').replace('T','').replace('O','')
         else:
             groups[2]  = 1
-        groups[3] = groups[3].replace('t','').replace('o','')
+        groups[3] = groups[3].replace('t','').replace('o','').replace('T','').replace('O','')
 
 
         MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
-        response = {
-            'month' : MONTHS.index(groups[0])+1,
-            'day' :   int(groups[2]) ,
-            'year' : int(groups[3])
-        }
+        try:
+            # print(groups)
+            response = {
+                'month' : MONTHS.index(groups[0].capitalize())+1,
+                'day' :   int(groups[2]) ,
+                'year' : int(groups[3])
+            }
+        except:
+            print(groups)
 
     # print('-_- ',response)
     return response
@@ -223,6 +233,25 @@ def add_uuid(obj):
     obj['pet'] = pet
     obj['tutor'] = tutor
     obj['appointment'] = appointment
+
+def get_dates(row, col, rep):
+    mark = ''
+    response = []
+    i = row+1
+    mark = rep[col][i]
+
+    while(str(mark) != 'nan'):
+        response.append(
+            {
+                'date': split_date(rep[col][i]),
+                'medicine': rep[col+2][i]
+            }
+        )
+        # print(mark,type(mark))
+        i+=1
+        mark = rep[col][i]
+    return response
+
 mask = {
     'day':{
         'row':0,
@@ -348,26 +377,22 @@ for r in COLUMN_KEY:
                     line = row
                     column = 0
                     info['appointment']['dates'] = []
-                    while date != 'None' and line < final_row:
-                        date = str(get_value(line,0,representation))
-                        description = str(get_value(line,2,representation))
-                        info['appointment']['dates'].append({
-                            'date':date,
-                            'medicine': description
-                        })
-                        line +=1 
-                    info['appointment']['dates'] = info['appointment']['dates'][:len(info['appointment']['dates'])-2]
+                    
+                    info['appointment']['dates'] = get_dates(index_row+8,0,representation)
             
             temp = None
             add_uuid(info)
+
+            dates = get_dates(index_row+8,0,representation)
             p = info['appointment']['properties']['pet_id']
             for app in info['appointment']['properties']['dates']:
                 if app['date'] != 'None':
                     temp = copy.deepcopy(info)
-                    date = split_date(app['date'])
+                    date = (app['date'])
+                    print(type(app['medicine']),app['medicine'])
                     if(date != None):
                         temp['appointment']['properties'] = date
-                        temp['appointment']['properties']['medicines'] = [app['medicine'].strip()]
+                        temp['appointment']['properties']['medicines'] = [] if type(app['medicine']) == float else [app['medicine'].strip()] 
                         temp['appointment']['properties']['pet_id'] = {'$oid':p}
                         temp['appointment']['properties']['appointment_type_id'] = {'$oid': 'f59758c04b1411eba63e70c9'}
                         map_results['appointment'].append(temp['appointment'])
