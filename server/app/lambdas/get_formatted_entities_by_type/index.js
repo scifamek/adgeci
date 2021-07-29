@@ -18,34 +18,132 @@ const $insideEnterpriseRepository = {
 };
 
 
+'use strict';
+var ObjectId = require('mongodb').ObjectId;
+
+const entitiesRepository = {
+	getEntitiesByType: async function (collection, page, sizePage, enviroment) {
+		const skip = sizePage * page;
+		const response = await enviroment.enterpriseDataSource
+			.collection(collection)
+			.find()
+			.skip(skip)
+			.limit(sizePage)
+			.toArray();
+		return response;
+	},
+	getExpandedEntitiesByType: async function (collection, page, sizePage, relationship, enviroment) {
+		const skip = sizePage * page;
+		const pipeline = [];
+		for (const rel of relationship) {
+			pipeline.push({
+				$lookup: {
+					from: rel['relationship'],
+					localField: `properties.${rel['name']}`,
+					foreignField: '_id',
+					as: rel['relationship'],
+				},
+			});
+		}
+		const response = await enviroment.enterpriseDataSource
+			.collection(collection)
+			.aggregate(pipeline)
+			.skip(skip)
+			.limit(sizePage)
+			.toArray();
+		return response;
+	},
+	getFormattedEntitiesByType: async function (collection, page, sizePage, fields, relationship, enviroment) {
+		const skip = sizePage * page;
+
+		var definition = { properties: {} };
+
+		for (const df of fields) {
+			definition['properties'][df] = 1;
+		}
+
+		const pipeline = [];
+
+		for (const rel of relationship) {
+			pipeline.push({
+				$lookup: {
+					from: rel['relationship'],
+					localField: `properties.${rel['local']}`,
+					foreignField: '_id',
+					as: rel['relationship'],
+				},
+			});
+		}
+
+		for (const rel of relationship) {
+			const repr = rel['repr']
+				.map((x) => `$$xxx.properties.${x}`)
+				.join(', ,')
+				.split(',');
+			console.log(repr);
+			const obj = {};
+			obj[rel['name']] = {
+				$map: {
+					input: `$${rel['name']}`,
+					as: 'xxx',
+					in: 
+					 { $concat: repr },
+					
+				},
+			};
+
+			pipeline.push({
+				$addFields: obj,
+			});
+		}
+		// pipeline.push({
+		//   '$project':
+		//     definition
+		// });
+		console.log(JSON.stringify(pipeline));
+		const response = await enviroment.enterpriseDataSource
+			.collection(collection)
+			.aggregate(pipeline)
+			.skip(skip)
+			.limit(sizePage)
+			.toArray();
+		return response;
+	},
+	createEntityByType: async function (collection, data, enviroment) {
+		const response = await enviroment.enterpriseDataSource.collection(collection).insertOne({ properties: data });
+		return response;
+	},
+};
+
 ;
 
 
-const entitiesRepository = {
-  getEntitiesByType: async function (collection, page, sizePage, enviroment) {
-    const skip = sizePage * page;
+const schemasRepository = {
+  getSchemasTypeEntity: async function (enviroment) {
     const response = await enviroment.enterpriseDataSource
-      .collection(collection)
-      .find()
-      .skip(skip)
-      .limit(sizePage)
+      .collection("schemas")
+      .find({
+        type: "entity",
+      })
       .toArray();
+
     return response;
   },
-  getFormattedEntitiesByType: async function (collection, page, sizePage,fields, enviroment) {
-    const skip = sizePage * page;
-    const response = await enviroment.enterpriseDataSource
-      .collection(collection)
-      .find({},fields)
-      .skip(skip)
-      .limit(sizePage)
+  getSchemasByCollection: async function (collection,enviroment) {
+    let response = await enviroment.enterpriseDataSource
+      .collection("schemas")
+      .find({
+        type: "entity",
+        collection: collection,
+      })
       .toArray();
-    return response;
-  },
-  createEntityByType: async function (collection, data, enviroment) {
-    const response = await enviroment.enterpriseDataSource
-      .collection(collection)
-      .insertOne({'properties':data});
+
+      
+      if (response.length > 0) {
+        response = response[0];
+      }
+
+
     return response;
   },
 };
@@ -97,32 +195,45 @@ async function processEvent(event, context, callback) {
   }
 
   
-  const response = await useCase(entitiesRepository,enviroment,body);
+  const response = await useCase(entitiesRepository,schemasRepository,enviroment,body);
 
   return { statusCode: 200, headers: {'Content-Type':'application/json'},body: JSON.stringify(response) };
 }
 
 
 async function useCase(
-  entitiesRepository,
+  entitiesRepository,schemasRepository,
   enviroment,
   body
 ) {
 
-  var definition =  {'properties':{}};
+  
 
-  for (const df of body.definition) {
-    definition['properties']['df'] = 1;
+  const schema = await schemasRepository.getSchemasByCollection(body.collection,enviroment);
+
+  const relationship = [];
+  for (const property in schema['definition']) {
+    const value = schema['definition'][property];
+    if('relationship' in value) {
+      const coll = value['relationship'];
+      const schemaRelationship =  await schemasRepository.getSchemasByCollection(coll ,enviroment);
+      console.log(schemaRelationship)
+      relationship.push({
+        'relationship': coll,
+        'name': property,
+        'local': value['local'],
+        'repr': schemaRelationship['repr']
+      });
+    }
   }
 
-  const entities = await entitiesRepository.getFormattedEntitiesByType(body.collection,body.page,body.sizePage,definition,enviroment);
+  const entities = await entitiesRepository.getFormattedEntitiesByType(body.collection,body.page,body.sizePage,body.definition,relationship,enviroment);
 
   const response = [];
 
 
   for (const item of entities) {
     var temp = {
-      '_id':item['_id']
     };
     for (const key in item['properties']) {
       if (Object.hasOwnProperty.call(item['properties'], key)) {
@@ -131,7 +242,18 @@ async function useCase(
         temp[key] = element;
       }
     }
-    response.push(temp);
+    for (const key in item) {
+      if(['properties'].indexOf(key) <= -1) {
+        console.log(key);
+        if (Object.hasOwnProperty.call(item, key)) {
+          const element = item[key];
+          temp[key] = element;
+        }
+
+      }
+    
+    }
+      response.push(temp);
   }
 
   return response;

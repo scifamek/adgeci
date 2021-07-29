@@ -189,27 +189,38 @@
 				"required": true
 			},
 			"pet_id": {
-				"display": "Mascota",
 				"usable": true,
-				"visible": true,
-				"relationship": "pets",
+				"visible": false,
 				"type": "ObjectId",
 				"required": true
 			},
+			"pets": {
+				"display": "Mascota",
+				"usable": true,
+				"visible": true,
+				"type": "ObjectId",
+				"relationship": "pets",
+				"local": "pet_id"
+			},
 			"appointment_type_id": {
+				"usable": true,
+				"visible": false,
+				"type": "ObjectId",
+				"required": true
+			},
+			"appointment_types": {
 				"display": "Tipo de cita",
 				"usable": true,
 				"visible": true,
-				"relationship": "pets",
 				"type": "ObjectId",
-				"required": true
+				"relationship": "appointment_types",
+				"local": "appointment_type_id"
 			},
 			"medicines": {
 				"display": "Medicamentos",
 				"usable": true,
 				"visible": true,
-				"relationship": "pets",
-				"type": "[ObjectId]",
+				"type": "[String]",
 				"required": true
 			}
 		}

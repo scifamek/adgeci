@@ -35,7 +35,8 @@
     "template": "two_db_clients_template",
     "repositories": {
       "enterprise": [
-        "entities/entities_repository.js"
+        "entities/entities_repository.js",
+        "schemas/schemas_repository.js"
       ]
     }
   },
