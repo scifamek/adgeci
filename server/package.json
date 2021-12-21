@@ -8,15 +8,19 @@
 	},
 	"scripts": {
 		"test": "test",
-		"get_modules_by_enterprise": "lambda-local -l app/lambdas/get_modules_by_enterprise/index.js -e app/lambdas_core/get_modules_by_enterprise/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
-		"get_entities_by_type": "lambda-local -l app/lambdas/get_entities_by_type/index.js -e app/lambdas_core/get_entities_by_type/event.json -t 10 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
-		"create_entity": "lambda-local -l app/lambdas/create_entity/index.js -e app/lambdas_core/create_entity/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
-		"get_formatted_entities_by_type": "lambda-local -l app/lambdas/get_formatted_entities_by_type/index.js -e app/lambdas_core/get_formatted_entities_by_type/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
-		"get_presentation_schema_definition": "lambda-local -l app/lambdas/get_presentation_schema_definition/index.js -e app/lambdas_core/get_presentation_schema_definition/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}"
+		"get_modules_by_enterprise": "lambda-local -l app/lambdas_output/get_modules_by_enterprise/index.js -e app/core_lambdas/get_modules_by_enterprise/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
+		"get_entities_by_type": "lambda-local -l app/lambdas_output/get_entities_by_type/index.js -e app/core_lambdas/get_entities_by_type/event.json -t 10 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
+		"create_entity": "lambda-local -l app/lambdas_output/create_entity/index.js -e app/core_lambdas/create_entity/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
+		"get_formatted_entities_by_type": "lambda-local -l app/lambdas_output/get_formatted_entities_by_type/index.js -e app/core_lambdas/get_formatted_entities_by_type/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
+		"get_presentation_schema_definition": "lambda-local -l app/lambdas_output/get_presentation_schema_definition/index.js -e app/core_lambdas/get_presentation_schema_definition/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
+		"run:lambda": "cd scripts && py run_lambda.py"
 	},
 	"author": "Scifamek",
 	"license": "ISC",
 	"dependencies": {
 		"mongodb": "^3.6.3"
+	},
+	"devDependencies": {
+		"lambda-local": "^2.0.0"
 	}
 }

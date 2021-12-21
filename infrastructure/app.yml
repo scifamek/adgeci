@@ -1,0 +1,159 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Deploy all infrasestructure.
+Resources:
+  GetModulesByEnterpriseLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_modules_by_enterprise
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of gets the modules by enterprise.
+      TracingConfig:
+        Mode: Active
+  GetSchemasTypeEntityLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_schemas_type_entity
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of gets the entity types from a enterprise.
+      TracingConfig:
+        Mode: Active
+  GetEntitiesByTypeLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_entities_by_type
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of obtaining all documents given a type.
+      TracingConfig:
+        Mode: Active
+  CreateEntityLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: create_entity
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of creating a entity given a type.
+      TracingConfig:
+        Mode: Active
+  GetSchemaDefinitionLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_schema_definition
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of getting the definition from a schema.
+      TracingConfig:
+        Mode: Active
+  GetPresentationSchemaDefinitionLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_presentation_schema_definition
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of getting the definition from a schema.
+      TracingConfig:
+        Mode: Active
+  GetFormattedEntitiesByTypeLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get_formatted_entities_by_type
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of getting the entities with a schema structure.
+      TracingConfig:
+        Mode: Active
+  LoginLF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: login
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = function(event, context) {
+            console.log("REQUEST RECEIVED:\n" + JSON.stringify(event))
+            return {'statusCode':200,'body':'hola'};              
+          }
+      Description: Function in charge of login into de app.
+      TracingConfig:
+        Mode: Active

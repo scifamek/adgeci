@@ -2,10 +2,10 @@ import os
 import json
 from zipfile import ZipFile
 
-LAMBDA_CORE_PATH = 'app/lambdas_core'
+LAMBDA_CORE_PATH = 'app/core_lambdas'
 LAMBDA_TEMPLATES_PATH = 'app/lambdas_templates'
 LAMBDA_REPOSITORIES_PATH = 'app/lambdas_repositories'
-LAMBDA_PATH = 'app/lambdas'
+LAMBDA_PATH = 'app/lambdas_output'
 
 CONFIG_PATH = 'config.json'
 
@@ -105,6 +105,7 @@ def copy_repositories(repositories,path):
                 file2.write(content)
                 response += content.replace('\"use strict\"','').replace('var ObjectId = require(\"mongodb\").ObjectId;','').replace('module.exports','const '+get_single_name(p)) + '\n'
     return response
+
 def build_functions():
     functions = list_lambda_functions()
     for function in functions:
