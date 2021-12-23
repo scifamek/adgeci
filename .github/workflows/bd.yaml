@@ -17,4 +17,4 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: |
           sudo apt install python3.8
-      - run: py
+      - run: python
