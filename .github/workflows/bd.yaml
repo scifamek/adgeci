@@ -30,7 +30,7 @@ jobs:
       - name: Compile lambdas
         run: |
           cd ${{ github.workspace }}/server
-          npm run compile:lambdas
+          npm run compile:lambdas:pipeline
       - name: Verify lambdas
         run: |
           cd ${{ github.workspace }}/server

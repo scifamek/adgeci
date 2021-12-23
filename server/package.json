@@ -14,7 +14,9 @@
     "get_formatted_entities_by_type": "lambda-local -l app/lambdas_output/get_formatted_entities_by_type/index.js -e app/core_lambdas/get_formatted_entities_by_type/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
     "get_presentation_schema_definition": "lambda-local -l app/lambdas_output/get_presentation_schema_definition/index.js -e app/core_lambdas/get_presentation_schema_definition/event.json -t 5 -E {\\\"MASTER_DATABASE_NAME\\\":\\\"master\\\",\\\"MONGODB_ATLAS_CLUSTER_URI\\\":\\\"mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net\\\"}",
     "run:lambda": "cd scripts && py run_lambda-v2.py",
-    "compile:lambdas": "cd scripts && py compile_lambdas.py"
+    "compile:lambdas": "cd scripts && py compile_lambdas.py",
+    "run:lambda:pipeline": "cd scripts && python run_lambda-v2.py",
+    "compile:lambdas:pipeline": "cd scripts && python compile_lambdas.py"
   },
   "author": "Scifamek",
   "license": "ISC",
