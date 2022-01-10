@@ -31,8 +31,18 @@ jobs:
         run: |
           cd ${{ github.workspace }}/server
           npm run compile:lambdas:pipeline
-      - name: Verify lambdas
+      - name: List lambdas
         run: |
-          cd ${{ github.workspace }}/server
-          ls output
+          cd ${{ github.workspace }}/server/output
+          ls 
+      - name: Create lambda functions
+        run: |
+          cd ${{ github.workspace }}/infrastructure/scripts
+          python create-lambda-functions.py
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
 

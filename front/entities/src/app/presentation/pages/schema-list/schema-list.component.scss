@@ -1,0 +1,15 @@
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid gray;
+  &:hover {
+    cursor: pointer;
+  }
+}
+span {
+  display: inline-block;
+}

@@ -9,19 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useCase = void 0;
-function useCase($modulesRepository, modulesRepository, enviroment, body) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let response = [];
-        const adquiredModules = yield modulesRepository.getModules(enviroment);
-        for (const mod of adquiredModules) {
-            const moduleInside = yield $modulesRepository.getModuleById(mod['module_id'], enviroment);
-            response.push({
-                module: moduleInside,
-                custom_name: mod['custom_name']
-            });
-        }
-        return response;
-    });
+exports.GetSchemasTypeEntityUsecase = void 0;
+class GetSchemasTypeEntityUsecase {
+    constructor(schemaEnterpriseRepository) {
+        this.schemaEnterpriseRepository = schemaEnterpriseRepository;
+    }
+    call() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.schemaEnterpriseRepository.getSchemasTypeEntity();
+            return response;
+        });
+    }
 }
-exports.useCase = useCase;
+exports.GetSchemasTypeEntityUsecase = GetSchemasTypeEntityUsecase;

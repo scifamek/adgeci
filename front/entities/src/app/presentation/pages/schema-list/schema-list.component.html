@@ -1,0 +1,23 @@
+<ul>
+    <ng-container *ngFor="let schema of ($schemas | async)?.data">
+
+        
+        <li (click)="goToListItems(schema.id)" >
+            <header>
+                <h2>
+                    {{ schema.display }}
+                </h2>
+            </header>
+            <section>
+                <span>
+                    <strong> Collection: </strong>
+                    {{ schema.collection }}
+                </span>
+                <span>
+                    <strong> Id: </strong>
+                    {{ schema.id }}
+                </span>
+            </section>
+        </li>
+    </ng-container>
+</ul>

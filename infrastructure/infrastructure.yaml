@@ -22,6 +22,25 @@ Resources:
         Mode: Active
 
 
+  GET_SCHEMAS_TYPE_ENTITY_LF:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get-schemas-type-entity
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          MASTER_DATABASE_NAME	: master
+          MONGODB_ATLAS_CLUSTER_URI: mongodb+srv://pochecho:sifamek666@information.ekarf.mongodb.net
+      Role: arn:aws:iam::786484964598:role/service-role/getModulesByEnterprise-role-55fbdt4f
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          exports.handler = (event, context) => {return {"statusCode":200,"body":JSON.stringify(event)};}
+      Description: This function is encharged of creating a new entity in a specified collection. 
+      TracingConfig:
+        Mode: Active
+
+
   GET_MODULES_BY_ENTERPRISE_LF:
     Type: AWS::Lambda::Function
     Properties:
