@@ -13,12 +13,11 @@ exports.handler = exports.EntityController = void 0;
 const base_controller_1 = require("../../../core/access/base-controller");
 const response_codes_helpers_1 = require("../../../core/helpers/response-codes.helpers");
 const mongodb_datasource_1 = require("../../../core/repository/datasource/mongodb.datasource");
-const entity_repository_1 = require("../../../core/repository/enterprise/entity/entity-repository");
 const schema_repository_1 = require("../../../core/repository/enterprise/schemas/schema-repository");
 const schema_mapper_1 = require("../../../core/repository/enterprise/schemas/schema.mapper");
 const enterprise_master_repository_1 = require("../../../core/repository/master/enterprise/enterprise.master.repository");
 const response_constants_1 = require("../response.constants");
-const get_entities_by_type_usecase_1 = require("./get-entities-by-type.usecase");
+const get_schema_definition_usecase_1 = require("./get-schema-definition.usecase");
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
 /**
@@ -38,14 +37,13 @@ class EntityController extends base_controller_1.BaseController {
             }
             const schemaMapper = new schema_mapper_1.SchemaMapper();
             const schemaEnterpriseRepository = new schema_repository_1.SchemaEnterpriseRepository(enterpriseDatabaseConnection, schemaMapper);
-            const entityRepository = new entity_repository_1.EntityEnterpriseRepository(enterpriseDatabaseConnection);
-            const usecase = new get_entities_by_type_usecase_1.GetEntitiesByTypeUsecase(schemaEnterpriseRepository, entityRepository);
+            const usecase = new get_schema_definition_usecase_1.GetSchemaDefinitionUsecase(schemaEnterpriseRepository);
             const response = yield usecase.call(body);
             return {
                 statusCode: 200,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    code: (0, response_codes_helpers_1.buildResponseCode)(response_constants_1.BASE_CODE, response_constants_1.RESPONSE_CODES_MAPPER.ENTITIES_BY_TYPE_FOUNDED_SUCCESSFULLY, body),
+                    code: (0, response_codes_helpers_1.buildResponseCode)(response_constants_1.BASE_CODE, response_constants_1.RESPONSE_CODES_MAPPER.SCHEMA_TYPE_ENTITY_SUCCESSFULLY_FOUNDED, Object.assign(Object.assign({}, body), enterpriseObj)),
                     data: Object.assign({}, response),
                 }),
             };

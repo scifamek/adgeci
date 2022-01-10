@@ -7,7 +7,10 @@ import { SchemaEnterpriseRepository } from "../../../core/repository/enterprise/
 import { SchemaMapper } from "../../../core/repository/enterprise/schemas/schema.mapper";
 import { EnterpriseMasterRepository } from "../../../core/repository/master/enterprise/enterprise.master.repository";
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
-import { GetEntitiesByTypeUsecase, Param } from "./get-entities-by-type.usecase";
+import {
+  GetSchemaDefinitionUsecase,
+  Param,
+} from "./get-schema-definition.usecase";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -42,11 +45,9 @@ export class EntityController extends BaseController<any> {
       enterpriseDatabaseConnection,
       schemaMapper
     );
-    const entityRepository = new EntityEnterpriseRepository(
-      enterpriseDatabaseConnection
-    );
-    const usecase = new GetEntitiesByTypeUsecase(schemaEnterpriseRepository,entityRepository);
-    
+
+    const usecase = new GetSchemaDefinitionUsecase(schemaEnterpriseRepository);
+
     const response = await usecase.call(body as Param);
     return {
       statusCode: 200,
@@ -54,11 +55,11 @@ export class EntityController extends BaseController<any> {
       body: JSON.stringify({
         code: buildResponseCode(
           BASE_CODE,
-          RESPONSE_CODES_MAPPER.ENTITIES_BY_TYPE_FOUNDED_SUCCESSFULLY,
-          body
+          RESPONSE_CODES_MAPPER.SCHEMA_TYPE_ENTITY_SUCCESSFULLY_FOUNDED,
+          { ...body, ...enterpriseObj }
         ),
         data: {
-          ...response
+          ...response,
         },
       } as ResponseModel<any>),
     };
