@@ -46,7 +46,7 @@ class EntityController extends base_controller_1.BaseController {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     code: (0, response_codes_helpers_1.buildResponseCode)(response_constants_1.BASE_CODE, response_constants_1.RESPONSE_CODES_MAPPER.ENTITIES_BY_TYPE_FOUNDED_SUCCESSFULLY, body),
-                    data: Object.assign({}, response),
+                    data: response,
                 }),
             };
         });

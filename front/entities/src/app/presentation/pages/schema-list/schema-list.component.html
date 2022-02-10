@@ -2,7 +2,7 @@
     <ng-container *ngFor="let schema of ($schemas | async)?.data">
 
         
-        <li (click)="goToListItems(schema.id)" >
+        <li (click)="goToListItems(schema)" >
             <header>
                 <h2>
                     {{ schema.display }}
@@ -19,5 +19,22 @@
                 </span>
             </section>
         </li>
+
+
+
+        <mat-card class="example-card">
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-content>
+              <p>This card indeterminates progress bar.</p>
+              <p> {{ schema.collection }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+
+
     </ng-container>
 </ul>

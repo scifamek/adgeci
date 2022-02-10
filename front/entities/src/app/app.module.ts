@@ -10,14 +10,16 @@ import { environment } from 'src/environments/environment';
 import { SERVER_HOST } from './injection.tokens';
 import { EntityListComponent } from './presentation/pages/entity-list/entity-list.component';
 import { CrudBuilderModule } from 'crud-builder';
+import { PagesModule } from './presentation/pages/pages.module';
 
 @NgModule({
-  declarations: [AppComponent, SchemaListComponent, EntityListComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CrudBuilderModule,
+    PagesModule,
   ],
   providers: [
     {

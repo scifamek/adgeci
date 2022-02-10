@@ -9,23 +9,15 @@ import { ResponseModel } from 'src/app/models/response.model';
 @Injectable({
   providedIn: 'root',
 })
-export class SchemaService {
+export class EntityService {
   constructor(
     private client: HttpClient,
     @Inject(SERVER_HOST) private host: string
   ) {}
 
-  getSchemasTypeEntity(): Observable<ResponseModel<SchemaModel[]>> {
+  getFormattedEntitiesByType(page: number, sizePage: number, definition: any, collection: any): Observable<ResponseModel<SchemaModel[]>> {
     return this.client.get<ResponseModel<SchemaModel[]>>(
-      `${this.host}/v1/schemas`
-    );
-  }
-
-  getSchemaDefinition(
-    schema: string
-  ): Observable<ResponseModel<any>> {
-    return this.client.get<ResponseModel<any>>(
-      `${this.host}/v1/schema/${schema}`
+      `${this.host}/v1/entity`
     );
   }
 }

@@ -57,9 +57,7 @@ export class EntityController extends BaseController<any> {
           RESPONSE_CODES_MAPPER.ENTITIES_BY_TYPE_FOUNDED_SUCCESSFULLY,
           body
         ),
-        data: {
-          ...response
-        },
+        data: response,
       } as ResponseModel<any>),
     };
   }

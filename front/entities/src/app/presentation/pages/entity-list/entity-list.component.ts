@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IActionModel, IDefinitionModel } from 'crud-builder';
 import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { EntityService } from '../../../services/entity/entity.service';
+import { SchemaService } from '../../../services/schema/schema.service';
 
 @Component({
   selector: 'app-entity-list',
@@ -8,34 +12,38 @@ import { of } from 'rxjs';
   styleUrls: ['./entity-list.component.scss'],
 })
 export class EntityListComponent implements OnInit {
+  static route = 'list';
+
   /**
    * Lets you to define the schema definition for the collection. That means that the structure of the collection.
    *
    * @type {IDefinitionModel}
    * @memberof AppComponent
    */
-  schemaDefinition: IDefinitionModel = {
-    columns: [
-      {
-        definition: 'name',
-        tag: 'Nombre',
-      },
-    ],
-    definitions: ['name'],
-    tags: ['Nombre'],
-    schema: {
-      _id: {
-        $oid: '5e38569701c17a0da5e1c5ec',
-      },
-      collection: 'tutors',
-      type: 'entity',
-      presentation: {
-        icon: 'supervisor_account',
-      },
-      display: 'Usuarios',
-      repr: ['name'],
-    },
-  };
+  schemaDefinition: IDefinitionModel | undefined;
+
+  // = {
+  //   columns: [
+  //     {
+  //       definition: 'name',
+  //       tag: 'Nombre',
+  //     },
+  //   ],
+  //   definitions: ['name'],
+  //   tags: ['Nombre'],
+  //   schema: {
+  //     _id: {
+  //       $oid: '5e38569701c17a0da5e1c5ec',
+  //     },
+  //     collection: 'tutors',
+  //     type: 'entity',
+  //     presentation: {
+  //       icon: 'supervisor_account',
+  //     },
+  //     display: 'Usuarios',
+  //     repr: ['name'],
+  //   },
+  // };
 
   /**
    * This attribute is used for defining the presentation schema when you want to display
@@ -62,7 +70,7 @@ export class EntityListComponent implements OnInit {
           },
         },
         children: [],
-      }
+      },
     ],
   };
 
@@ -92,18 +100,22 @@ export class EntityListComponent implements OnInit {
     {
       display: 'Editar',
       icon: 'edit',
-      event: (item: any) => {
+      event: (item: any, items) => {
         console.log('Imprime algo', item);
         return Promise.resolve(item);
       },
-      openDetail: true,
+      mode: 'edit',
     },
     {
       display: 'Eliminar',
       icon: 'clear',
-      event:
-        'function eva (item)  {console.log("Imprime algo",item);} eva(item);',
-      openDetail: false,
+      event: (item, items: any[]) => {
+        console.log('Imprime algo', item, items);
+        let index = items.indexOf(item);
+        console.log(index);
+        items.splice(index, 1);
+        return Promise.resolve(item);
+      },
     },
   ];
 
@@ -115,12 +127,13 @@ export class EntityListComponent implements OnInit {
    * @returns
    */
   dataFunction = (page: number, sizePage: number, definition: any) => {
-    console.log(page, sizePage, definition, 1);
-    return of([
-      {
-        name: 'Sergio',
-      },
-    ]);
+    return this.entityService
+      .getFormattedEntitiesByType(page, sizePage, definition, this.collection)
+      .pipe(
+        map((x) => {
+          return x.data;
+        })
+      );
   };
 
   /**
@@ -136,7 +149,6 @@ export class EntityListComponent implements OnInit {
         console.log('D=> ', items);
         return Promise.resolve(items);
       },
-      openDetail: false,
     },
     {
       display: 'Descargar Historial',
@@ -144,10 +156,27 @@ export class EntityListComponent implements OnInit {
         console.log('D=> ', items);
         return Promise.resolve(items);
       },
-      openDetail: false,
     },
   ];
-  constructor() {}
+  collection: any;
 
-  ngOnInit(): void {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private schemaService: SchemaService,
+    private entityService: EntityService
+  ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(async (params: Params) => {
+      const schema = JSON.parse(params.schema);
+      console.log(schema);
+      this.collection = schema.collection;
+      const data = await this.schemaService
+        .getSchemaDefinition(schema.collection)
+        .toPromise();
+      console.log(data);
+      this.schemaDefinition = { ...data.data, schema: schema };
+      console.log(this.schemaDefinition);
+    });
+  }
 }

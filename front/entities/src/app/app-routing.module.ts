@@ -10,7 +10,7 @@ const routes: Routes = [
     component: SchemaListComponent,
   },
   {
-    path: 'list',
+    path: EntityListComponent.route,
     component: EntityListComponent,
   },
 ];
