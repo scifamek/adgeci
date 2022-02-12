@@ -40,5 +40,7 @@ jobs:
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: |
         cd server/scripts && python compile_lambdas.py
+      name: Compile Lambdas
     - run: |
-        aws lambda update-function-code --function-name  my-function --zip-file fileb://my-function.zip
+        cd server/scripts && python upload_lambdas.py
+      name: Upload Lambdas
