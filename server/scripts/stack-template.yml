@@ -22,3 +22,9 @@ Resources:
                 Action: 'lambda:*'
                 Resource: '*'
   
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: adgeci-lambda-zip-bucket
+  
