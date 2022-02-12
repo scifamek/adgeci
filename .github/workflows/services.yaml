@@ -41,7 +41,23 @@ jobs:
       name: Compile Lambdas
     - name: Create / Update Cloudformation Stack
       run: |
-        aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset
+
+        output=$(aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset 2>&1)
+
+        RESULT=$?
+
+        if [ $RESULT -eq 0 ]; then
+          echo "$output"
+        else
+          if [[ "$output" == *"No updates are to be performed"* ]]; then
+            echo "No cloudformation updates are to be performed."
+            exit 0
+          else
+            echo "$output"
+            exit $RESULT
+          fi
+        fi
+        
     - run: |
         cd server/scripts && python upload_lambdas.py
       name: Upload Lambdas
