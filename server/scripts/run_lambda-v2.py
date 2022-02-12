@@ -21,10 +21,14 @@ def add_parameters(enviroment):
 
 
 execution_file = list(glob.iglob(
-    f'../output/{lambda_name}/**/index.js', recursive=True)).pop().replace("../", '').replace("\\", "/")
-event_file = execution_file.replace(
-    "index.js", 'event.json').replace(f"output/{lambda_name}/", "")
-print(execution_file)
+    f'../output/{lambda_name}/index.js', recursive=True)).pop().replace("../", '').replace("\\", "/")
+
+
+event_file = list(glob.iglob(
+    f'../microservices/*/{lambda_name}/event.json', recursive=True)).pop().replace("../", '').replace("\\", "/")
+
+
+event_file = event_file.replace(f"output/{lambda_name}/", "")
 execution_command = f"cd .. && lambda-local -l {execution_file} -e {event_file} -t 5 -E {{{add_parameters(enviroment)}}}"
 
 

@@ -6,10 +6,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: pdn
 
     strategy:
       matrix:
         node-version: [14.x]
+        AWS_CLI_VERSION: "2"
+
 
     steps:
     - uses: actions/checkout@v2
@@ -17,4 +20,25 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install AWS
+      id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@master
+      with:
+        version: ${{ matrix.AWS_CLI_VERSION }}
+    - name: Configure awscli
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY 
+        aws configure set region us-east-1
     - run: cd server && npm i
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - run: |
+        cd server/scripts && python compile_lambdas.py
+    - run: |
+        aws lambda update-function-code --function-name  my-function --zip-file fileb://my-function.zip
