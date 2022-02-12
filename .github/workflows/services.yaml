@@ -49,7 +49,7 @@ jobs:
         if [ $RESULT -eq 0 ]; then
           echo "$output"
         else
-          if [[ "$output" == *"No updates are to be performed"* ]]; then
+          if [[ "$output" == *"No updates are to be performed."* ]]; then
             echo "No cloudformation updates are to be performed."
             exit 0
           else
