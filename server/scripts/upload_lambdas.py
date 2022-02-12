@@ -9,7 +9,7 @@ def upload_lambda(path):
     command = base_command.format(name, name)
     print(command)
     print()
-    os.system(f'aws s3 --region us-east-1 cp {path}.zip s3://adgeci-lambda-zip-bucket ')
+    os.system(f'aws s3 --region us-east-1 cp {path} s3://adgeci-lambda-zip-bucket ')
     os.system(command)
 
 for file in execution_files:
