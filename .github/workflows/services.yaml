@@ -42,7 +42,7 @@ jobs:
     - name: Create / Update Cloudformation Stack
       run: |
 
-        output=$(aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset 2>&1)
+        output=$(aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM 2>&1)
 
         RESULT=$?
 
