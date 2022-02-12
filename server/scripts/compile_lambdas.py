@@ -37,7 +37,7 @@ def extract_lambda_name(route):
     return route.split('/').pop()+'-lambda-function'
 
 def transform_lambda_name(name): 
-    return '_'.join(list(map(lambda x: x.upper(),name.split('-'))))
+    return ''.join(list(map(lambda x: x.upper(),name.split('-'))))
 def normalize(x): return x.replace('\\', '/')
 
 
