@@ -37,7 +37,7 @@ def extract_lambda_name(route):
     return route.split('/').pop()+'-lambda-function'
 
 def transform_lambda_name(name): 
-    return ''.join(list(map(lambda x: x.upper(),name.split('-'))))
+    return ''.join(list(map(lambda x: x.capitalize(),name.split('-'))))
 def normalize(x): return x.replace('\\', '/')
 
 
@@ -82,7 +82,7 @@ for microservice in microservices:
                 function_body = function_template.format(logical_name, name, description)
                 stack_template += function_body
                 
-                shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
+                #shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
 
                 
                 #Creating a zip file
