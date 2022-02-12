@@ -1,7 +1,7 @@
 import glob
 import os
 bucket = 'adgeci-lambda-zip-bucket'
-base_command = 'aws lambda update-function-code --function-name  {} --s3-bucket s3://{}/{}.zip'
+base_command = 'aws lambda update-function-code --function-name  {} --s3-bucket {}  --s3.key {}.zip'
 execution_files = list(map(lambda x: x.replace('\\', '/'),list(glob.iglob(f'../output/**/*.zip', recursive=True))))
 
 def upload_lambda(path):
