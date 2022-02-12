@@ -42,7 +42,7 @@ jobs:
     - name: Create / Update Cloudformation Stack
       run: |
         ls
-        aws cloudformation create-stack --stack-name adgeci-default-stack --template-body file://../output/stack.yml
+        aws cloudformation create-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml
     - run: |
         cd server/scripts && python upload_lambdas.py
       name: Upload Lambdas
