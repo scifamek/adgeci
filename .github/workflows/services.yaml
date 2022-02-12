@@ -41,7 +41,7 @@ jobs:
       name: Compile Lambdas
     - name: Create / Update Cloudformation Stack
       run: |
-        aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM
+        aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset
     - run: |
         cd server/scripts && python upload_lambdas.py
       name: Upload Lambdas
