@@ -1,7 +1,7 @@
 import glob
 import os
 
-base_command = 'aws lambda update-function-code --function-name  {} --zip-file {}'
+base_command = 'aws lambda update-function-code --function-name  {} --zip-file fileb://{}'
 execution_files = list(map(lambda x: x.replace('\\', '/'),list(glob.iglob(f'../output/**/*.zip', recursive=True))))
 
 def upload_lambda(path):
