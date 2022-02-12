@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        AWS_CLI_VERSION: "2"
+        AWS_CLI_VERSION: ["2"]
 
 
     steps:
