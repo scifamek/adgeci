@@ -39,6 +39,9 @@ jobs:
     - run: |
         cd server/scripts && python compile_lambdas.py
       name: Compile Lambdas
+    - name: Create / Update Cloudformation Stack
+      run: |
+        aws cloudformation create-stack --stack-name adgeci-default-stack --template-body file://../output/stack.yml
     - run: |
         cd server/scripts && python upload_lambdas.py
       name: Upload Lambdas
