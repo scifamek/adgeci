@@ -15,8 +15,7 @@ function_template = '''
     Properties:
       FunctionName: {}
       Runtime: nodejs14.x
-      Role: 
-        - !Ref RootRole
+      Role: !GetAtt RootRole.Arn
       Handler: index.handler
       Code:
         ZipFile: |
@@ -82,7 +81,7 @@ for microservice in microservices:
                 function_body = function_template.format(logical_name, name, description)
                 stack_template += function_body
                 
-                #shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
+                shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
 
                 
                 #Creating a zip file
