@@ -24,7 +24,7 @@ function_template = '''
   {}LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: {}
+      FunctionName: {}-lambda-function
       Runtime: nodejs14.x
       Role: !GetAtt RootRole.Arn
       Handler: index.handler
