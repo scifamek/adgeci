@@ -42,11 +42,6 @@ Resources:
     Properties:
       DeploymentId:
         Ref: ApiDeployment
-      MethodSettings:
-      - DataTraceEnabled: false
-        HttpMethod: "*"
-        LoggingLevel: INFO
-        ResourcePath: "/*"
       RestApiId:
         Ref: AdgeciBackApi
       StageName: LATEST
