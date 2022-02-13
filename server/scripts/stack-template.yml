@@ -28,3 +28,32 @@ Resources:
     Properties:
       BucketName: adgeci-lambda-zip-bucket
   
+  AdgeciBackApi: 
+    Type: "AWS::ApiGateway::RestApi"
+    Properties: 
+      Name: adgeci-back-api
+      Description: API used for Adgeci requests
+      FailOnWarnings : true
+  
+    
+
+  AdgeciBackApiStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId:
+        Ref: ApiDeployment
+      MethodSettings:
+      - DataTraceEnabled: false
+        HttpMethod: "*"
+        LoggingLevel: INFO
+        ResourcePath: "/*"
+      RestApiId:
+        Ref: AdgeciBackApi
+      StageName: LATEST
+
+
+
+  
+
+
+  

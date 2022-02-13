@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -19,6 +28,7 @@ const schema_mapper_1 = require("../../../core/repository/enterprise/schemas/sch
 const enterprise_master_repository_1 = require("../../../core/repository/master/enterprise/enterprise.master.repository");
 const response_constants_1 = require("../response.constants");
 const get_entities_by_type_usecase_1 = require("./get-entities-by-type.usecase");
+const decorators_1 = require("../../../core/helpers/decorators");
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
 /**
@@ -52,6 +62,12 @@ class EntityController extends base_controller_1.BaseController {
         });
     }
 }
+__decorate([
+    (0, decorators_1.method)('get'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
+], EntityController.prototype, "handler", null);
 exports.EntityController = EntityController;
 const entityController = new EntityController();
 exports.handler = entityController.handler;

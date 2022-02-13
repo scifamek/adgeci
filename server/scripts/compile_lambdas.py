@@ -9,8 +9,19 @@ microservices_folder = '../microservices'
 lambdas_folder = 'usecases'
 STACK_TEMPLATE = 'stack-template.yml'
 OUTPUT_STACK = f'{OUTPUT_FOLDER}/stack.yml'
+
+deploy_template = '''
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+{}
+    Properties:
+      RestApiId:
+        Ref: AdgeciBackApi
+      StageName: InitStage
+'''
 function_template = '''
-  {}:
+  {}LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: {}
@@ -23,6 +34,64 @@ function_template = '''
       Description: {}
       TracingConfig:
         Mode: Active
+  
+  {}LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:invokeFunction
+      FunctionName:
+        Fn::GetAtt:
+        - {}LambdaFunction
+        - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+        - ''
+        - - 'arn:aws:execute-api:'
+          - Ref: AWS::Region
+          - ":"
+          - Ref: AWS::AccountId
+          - ":"
+          - Ref: AdgeciBackApi
+          - "/*"
+  {}Resource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId:
+        Ref: AdgeciBackApi
+      ParentId:
+        Fn::GetAtt:
+        - AdgeciBackApi
+        - RootResourceId
+      PathPart: {}
+  {}Request:
+    DependsOn: {}LambdaPermission
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: {}
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: {}
+        Uri:
+          Fn::Join:
+          - ''
+          - - 'arn:aws:apigateway:'
+            - Ref: AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - Fn::GetAtt:
+              - {}LambdaFunction
+              - Arn
+            - "/invocations"
+        IntegrationResponses:
+        - StatusCode: 200
+
+      ResourceId:
+        Ref: {}Resource
+      RestApiId:
+        Ref: AdgeciBackApi
+      MethodResponses:
+      - StatusCode: 200
 '''
 
 
@@ -31,9 +100,14 @@ def extract_lambda_description(content):
     found = re.findall(pattern, content)
     return found[0] if len(found) == 1 else ''
 
+def extract_lambda_method(content):
+    pattern = '@method\([\"\']{1}([a-z]+)[\"\']{1}\)'
+    found = re.findall(pattern, content)
+    return found[0].upper() if len(found) == 1 else ''
+
 
 def extract_lambda_name(route):
-    return route.split('/').pop()+'-lambda-function'
+    return route.split('/').pop()
 
 def transform_lambda_name(name): 
     return ''.join(list(map(lambda x: x.capitalize(),name.split('-'))))
@@ -50,7 +124,7 @@ try:
     shutil.rmtree(OUTPUT_FOLDER)
 except OSError as e:
     print(f"Error: {OUTPUT_FOLDER} {e.strerror}")
-
+deploy_body = ''
 for microservice in microservices:
     path = f"{microservice}/*"
     lambdas_path = list(map(normalize, list(glob.iglob(path))))
@@ -59,10 +133,11 @@ for microservice in microservices:
         if(os.path.isfile(index_path)):
             with open(index_path, "r", encoding="utf-8") as t:
                 index_content = t.read()
-
+            method = extract_lambda_method(index_content)
             description = extract_lambda_description(index_content)
             name = extract_lambda_name(lambda_path)
             original_name = name.replace("-lambda-function", "")
+            name_permissions = original_name + 'LambdaPermission'
             logical_name = transform_lambda_name(name)
 
             tsconfig_path = f"tsconfig.json"
@@ -78,22 +153,36 @@ for microservice in microservices:
                         exports.handler = handler.handler;
                           ''')
                 
-                function_body = function_template.format(logical_name, name, description)
+                function_body = function_template.format(
+                  logical_name,
+                  name,
+                  description,
+                  logical_name,
+                  logical_name,
+                  logical_name,
+                  original_name,
+                  logical_name,
+                  logical_name,
+                  method,
+                  method,
+                  logical_name,
+                  logical_name,
+                )
+                deploy_body += (f'      - {logical_name}Request\n')
                 stack_template += function_body
                 
-                shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
+                #shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
 
                 
                 #Creating a zip file
-                output_lambda_path = f'../output/{original_name}/{original_name}.zip'
-                zipObj = ZipFile(output_lambda_path, 'w')
-                files_to_add = os.walk(output_lambda_files_path)
-                for folderName, subfolders, filenames in files_to_add:
-                  for filename in filenames:
-                    file_path = normalize(os.path.join(folderName, filename))
-                    zipObj.write(file_path, file_path.replace(f'{output_lambda_files_path}/',''))
-                zipObj.close()
-
-                
+                # output_lambda_path = f'../output/{original_name}/{original_name}.zip'
+                # zipObj = ZipFile(output_lambda_path, 'w')
+                # files_to_add = os.walk(output_lambda_files_path)
+                # for folderName, subfolders, filenames in files_to_add:
+                #   for filename in filenames:
+                #     file_path = normalize(os.path.join(folderName, filename))
+                #     zipObj.write(file_path, file_path.replace(f'{output_lambda_files_path}/',''))
+                # zipObj.close()
+stack_template += deploy_template.format(f'{deploy_body}')
 with open(OUTPUT_STACK, 'w', encoding='utf-8') as f:
     f.write(stack_template)

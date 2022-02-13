@@ -8,6 +8,7 @@ import { SchemaMapper } from "../../../core/repository/enterprise/schemas/schema
 import { EnterpriseMasterRepository } from "../../../core/repository/master/enterprise/enterprise.master.repository";
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
 import { GetEntitiesByTypeUsecase, Param } from "./get-entities-by-type.usecase";
+import { method} from "../../../core/helpers/decorators";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -15,6 +16,7 @@ let enterpriseDatabaseConnection = null;
  * This function is encharged of creating a new entity in a specified collection.
  */
 export class EntityController extends BaseController<any> {
+  @method('get')
   async handler(body: any, context: any, callback: any) {
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
