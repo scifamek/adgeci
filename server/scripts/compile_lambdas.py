@@ -171,18 +171,17 @@ for microservice in microservices:
                 deploy_body += (f'      - {logical_name}Request\n')
                 stack_template += function_body
                 
-                #shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
+                shutil.copytree('../node_modules', f'../output/{original_name}/node_modules')
 
                 
-                #Creating a zip file
-                # output_lambda_path = f'../output/{original_name}/{original_name}.zip'
-                # zipObj = ZipFile(output_lambda_path, 'w')
-                # files_to_add = os.walk(output_lambda_files_path)
-                # for folderName, subfolders, filenames in files_to_add:
-                #   for filename in filenames:
-                #     file_path = normalize(os.path.join(folderName, filename))
-                #     zipObj.write(file_path, file_path.replace(f'{output_lambda_files_path}/',''))
-                # zipObj.close()
+                output_lambda_path = f'../output/{original_name}/{original_name}.zip'
+                zipObj = ZipFile(output_lambda_path, 'w')
+                files_to_add = os.walk(output_lambda_files_path)
+                for folderName, subfolders, filenames in files_to_add:
+                  for filename in filenames:
+                    file_path = normalize(os.path.join(folderName, filename))
+                    zipObj.write(file_path, file_path.replace(f'{output_lambda_files_path}/',''))
+                zipObj.close()
 stack_template += deploy_template.format(f'{deploy_body}')
 with open(OUTPUT_STACK, 'w', encoding='utf-8') as f:
     f.write(stack_template)
