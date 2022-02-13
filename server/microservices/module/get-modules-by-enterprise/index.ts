@@ -9,6 +9,7 @@ import { GetModulesByEnterpriseIdUsecase } from "./get-modules-by-enterprise.use
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
 import { ModulesEnterpriseRepository } from "../../../core/repository/enterprise/modules/modules-repository";
 import { ModulesMasterRepository } from "../../../core/repository/master/modules/modules.master.repository";
+import { method } from "../../../core/helpers/decorators";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -16,6 +17,7 @@ let enterpriseDatabaseConnection = null;
  * This function is encharged of getting all modules configured for a enterprise.
  */
 export class ModuleController extends BaseController<ModuleModel> {
+  @method('get')
   async handler(body: any, context: any, callback: any) {
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
