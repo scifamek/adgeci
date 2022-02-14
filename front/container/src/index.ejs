@@ -44,6 +44,14 @@
         }
       }
     </script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
     <link
       rel="preload"
       href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
@@ -65,7 +73,7 @@
     <% } %>
 
     <script>
-      // Import the functions you need from the SDKs you need
+      /* Import the functions you need from the SDKs you need
       import { initializeApp } from "firebase/app";
       import { getAnalytics } from "firebase/analytics";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -86,6 +94,7 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
+      */
     </script>
     <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
@@ -102,10 +111,24 @@
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
     <% } %>
   </head>
-  <body>
-    <noscript> You need to enable JavaScript to run this app. </noscript>
+  <body class="d-flex">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="/modules">Ver módulos activos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Mediciones</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">PQRS</a>
+      </li>
+    </ul>
     <main>
       <section id="single-spa-application:@adgeci/entities"></section>
+      <section id="single-spa-application:@adgeci/root-config">
+        Adgeci es una solución que le permite gestionar su negocio completamente
+        administrable
+      </section>
     </main>
     <script>
       System.import("@adgeci/root-config");

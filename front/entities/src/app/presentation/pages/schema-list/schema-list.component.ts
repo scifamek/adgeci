@@ -5,6 +5,7 @@ import { ResponseModel } from 'src/app/models/response.model';
 import { SchemaModel } from 'src/app/models/schema.model';
 import { SchemaService } from 'src/app/services/schema/schema.service';
 import { EntityListComponent } from '../entity-list/entity-list.component';
+import { SchemaDetailComponent } from '../schema-detail/schema-detail.component';
 
 @Component({
   selector: 'app-schema-list',
@@ -21,6 +22,17 @@ export class SchemaListComponent implements OnInit {
 
   goToListItems(schema: any) {
     this.router.navigate([EntityListComponent.route], {
+      queryParams: {
+        schema: JSON.stringify(schema),
+      },
+
+
+    });
+  }
+
+
+  goToDetail(schema: any) {
+    this.router.navigate([SchemaDetailComponent.route], {
       queryParams: {
         schema: JSON.stringify(schema),
       },
