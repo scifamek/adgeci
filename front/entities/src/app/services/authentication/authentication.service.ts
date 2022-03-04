@@ -4,7 +4,8 @@ import { SERVER_HOST } from 'src/app/injection.tokens';
 import { SchemaModel } from 'src/app/models/schema.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ResponseModel } from 'src/app/models/response.model';
+import { ResponseModel } from 'adgeci-core-utils/models';
+
 
 @Injectable({
   providedIn: 'root',

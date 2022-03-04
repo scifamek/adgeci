@@ -4,7 +4,7 @@ import { SERVER_HOST } from 'src/app/injection.tokens';
 import { SchemaModel } from 'src/app/models/schema.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ResponseModel } from 'src/app/models/response.model';
+import { ResponseModel } from 'adgeci-core-utils/models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class SchemaService {
 
   getSchemasTypeEntity(): Observable<ResponseModel<SchemaModel[]>> {
     return this.client.get<ResponseModel<SchemaModel[]>>(
-      `${this.host}/v1/schemas`
+      `${this.host}/v1/get-schemas-type-entity`
     );
   }
 
@@ -25,7 +25,7 @@ export class SchemaService {
     schema: string
   ): Observable<ResponseModel<any>> {
     return this.client.get<ResponseModel<any>>(
-      `${this.host}/v1/schema/${schema}`
+      `${this.host}/v1/get-schema-definition/${schema}`
     );
   }
 }

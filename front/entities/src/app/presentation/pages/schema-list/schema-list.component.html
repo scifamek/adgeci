@@ -7,48 +7,32 @@
       </p>
     </section>
     <section>
-        <figure>
-            <img src="../../assets/module/module-icon.png" alt="">
-        </figure>
+      <figure>
+        <img src="./../../assets/module/module-icon.png" alt="" />
+      </figure>
     </section>
   </header>
 
   <div class="row d-flex">
-    <ng-container *ngFor="let schema of ($schemas | async)?.data">
-      <div class="col-lg-3 col-md-3 align-items-center flex-column">
-        <mat-card
-          (click)="goToListItems(schema)"
-          class="schema-card border-1 align-self-center align-items-center"
-        >
-          <mat-card-title class="text-primary">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">{{
-              schema.presentation.icon
-            }}</mat-icon>
-            {{ schema.display }}
-          </mat-card-title>
-          <mat-card-subtitle>
-            {{ schema.collection }}
-          </mat-card-subtitle>
+    <acl-card
+      class="col-lg-3 col-md-3 col-xl-3 col-sm-6 align-items-center flex-column"
+      *ngFor="let schema of ($schemas | async)?.data"
+      title=" {{ schema.display }}"
+      subtitle="  {{ schema.collection }}"
+    >
+      <span>
+        {{ schema.presentation.icon }}
+      </span>
 
-          <mat-card-actions>
-            <button
-              mat-stroked-button
-              color="primary"
-              (click)="goToListItems(schema)"
-            >
-              Ver Listado
-            </button>
+      <div class="d-flex w-100 justify-content-around mt-3">
+        <acl-button size="small" (click)="goToListItems(schema)">
+          Listado
+        </acl-button>
 
-            <button
-            mat-stroked-button
-            color="primary"
-            (click)="goToDetail(schema)"
-          >
-            Ver esquema
-          </button>
-          </mat-card-actions>
-        </mat-card>
+        <acl-button size="small"  kind="outline" (click)="goToDetail(schema)">
+          Esquema
+        </acl-button>
       </div>
-    </ng-container>
+    </acl-card>
   </div>
 </div>

@@ -52,24 +52,174 @@ export class EntityListComponent implements OnInit {
    * @memberof AppComponent
    */
   presentationDefinition = {
-    component: 'crubu-row',
+    component: 'acl-container',
     children: [
       {
-        component: 'crubu-col',
+        component: 'acl-row',
+        children: [
+          {
+            component: 'acl-col',
 
-        responsive: {
-          xs: {
-            layout: 12,
-            offset: 0,
+            responsive: {
+              xs: {
+                layout: 12,
+                offset: 0,
+              },
+              md: {
+                layout: 4,
+              },
+              lg: {
+                layout: 4,
+              },
+              default: {
+                layout: 6,
+              },
+            },
+            children: [
+              {
+                component: 'acl-input',
+                property: 'day',
+                configuration: {
+                  icon: 'grading',
+                  placeholder: '',
+                  label: 'Día',
+                  hint: '',
+                  type: 'input',
+                },
+              },
+            ],
           },
-          md: {
-            layout: 4,
+
+          {
+            component: 'acl-col',
+
+            responsive: {
+              xs: {
+                layout: 12,
+                offset: 0,
+              },
+              md: {
+                layout: 4,
+              },
+              lg: {
+                layout: 4,
+              },
+              default: {
+                layout: 6,
+              },
+            },
+            children: [
+              {
+                component: 'acl-input',
+                property: 'month',
+                configuration: {
+                  icon: 'grading',
+                  placeholder: '',
+                  label: 'Mes',
+                  hint: '',
+                  type: 'input',
+                },
+              },
+            ],
           },
-          default: {
-            layout: 6,
+
+          {
+            component: 'acl-col',
+
+            responsive: {
+              xs: {
+                layout: 12,
+                offset: 0,
+              },
+              md: {
+                layout: 4,
+              },
+              lg: {
+                layout: 4,
+              },
+              default: {
+                layout: 6,
+              },
+            },
+            children: [
+              {
+                component: 'acl-input',
+                property: 'year',
+                configuration: {
+                  icon: 'grading',
+                  placeholder: '',
+                  label: 'Año',
+                  hint: '',
+                  type: 'input',
+                },
+              },
+            ],
           },
-        },
-        children: [],
+        ],
+      },
+      {
+        component: 'acl-row',
+        children: [
+          {
+            component: 'acl-col',
+
+            responsive: {
+              xs: {
+                layout: 12,
+                offset: 0,
+              },
+              md: {
+                layout: 4,
+              },
+              default: {
+                layout: 6,
+              },
+            },
+            children: [
+              {
+                component: 'acl-input',
+                property: 'pet_id',
+                configuration: {
+                  icon: 'grading',
+                  placeholder: '',
+                  label: 'Mascota',
+                  hint: '',
+                  type: 'input',
+                },
+              },
+            ],
+          },
+
+          {
+            component: 'acl-col',
+
+            responsive: {
+              xs: {
+                layout: 12,
+                offset: 0,
+              },
+              md: {
+                layout: 4,
+              },
+              default: {
+                layout: 6,
+              },
+            },
+            children: [
+              {
+                component: 'acl-input',
+                property: 'appointment_type_id',
+                configuration: {
+                  icon: 'grading',
+                  placeholder: '',
+                  label: 'Tipo de Cita',
+                  hint: '',
+                  type: 'input',
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   };
@@ -100,7 +250,7 @@ export class EntityListComponent implements OnInit {
     {
       display: 'Editar',
       icon: 'edit',
-      event: (item: any, items) => {
+      event: (item: any, items: []) => {
         console.log('Imprime algo', item);
         return Promise.resolve(item);
       },
@@ -109,7 +259,7 @@ export class EntityListComponent implements OnInit {
     {
       display: 'Eliminar',
       icon: 'clear',
-      event: (item, items: any[]) => {
+      event: (item: any, items: any[]) => {
         console.log('Imprime algo', item, items);
         let index = items.indexOf(item);
         console.log(index);
@@ -145,14 +295,14 @@ export class EntityListComponent implements OnInit {
   generalActions: IActionModel[] = [
     {
       display: 'Enviar Correos',
-      event: (items) => {
+      event: (items: []) => {
         console.log('D=> ', items);
         return Promise.resolve(items);
       },
     },
     {
       display: 'Descargar Historial',
-      event: (items) => {
+      event: (items: []) => {
         console.log('D=> ', items);
         return Promise.resolve(items);
       },

@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      html{
+        font-size: 62.5% !important;
+      }
+    </style>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -37,6 +42,18 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
+    <script>
+      window.addEventListener("USER-AUTHENTICATED", (event) => {
+        console.log("El token es: ", event.detail.token);
+        window.location.href = "/home";
+      });
+
+      window.addEventListener("NAVIGATE", (event) => {
+        const route = "/" + event.detail.path;
+        console.log("La ruta es: ", route);
+        window.location.href = route;
+      });
+    </script>
     <script type="systemjs-importmap">
       {
         "imports": {
@@ -66,7 +83,9 @@
       {
         "imports": {
           "@adgeci/root-config": "//localhost:9000/adgeci-container-root-config.js",
-          "@adgeci/entities": "http://localhost:4200/main.js"
+          "@adgeci/entities": "http://localhost:4200/main.js",
+          "@adgeci/authentication": "http://localhost:4300/main.js",
+          "@adgeci/home": "http://localhost:4400/main.js"
         }
       }
     </script>
@@ -123,16 +142,21 @@
         <a class="nav-link" href="#">PQRS</a>
       </li>
     </ul>
-    <main>
-      <section id="single-spa-application:@adgeci/entities"></section>
-      <section id="single-spa-application:@adgeci/root-config">
-        Adgeci es una solución que le permite gestionar su negocio completamente
-        administrable
-      </section>
+    <main class="w-100">
+      <section
+        class="w-100"
+        id="single-spa-application:@adgeci/entities"
+      ></section>
+      <section
+        class="w-100"
+        id="single-spa-application:@adgeci/authentication"
+      ></section>
+      <section class="w-100" id="single-spa-application:@adgeci/home"></section>
     </main>
     <script>
       System.import("@adgeci/root-config");
     </script>
+
     <import-map-overrides-full
       show-when-local-storage="devtools"
       dev-libs

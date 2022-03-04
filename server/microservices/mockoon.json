@@ -11,7 +11,7 @@
       "uuid": "c6ca6853-61e7-4d0f-9ae9-d56bbef3872f",
       "documentation": "",
       "method": "get",
-      "endpoint": "v1/schemas",
+      "endpoint": "v1/get-schemas-type-entity",
       "responses": [
         {
           "uuid": "0896fa7e-6ee9-407e-be21-c21ebbcf78ee",
@@ -45,7 +45,7 @@
       "uuid": "a8f1e2b0-5d3d-494d-81aa-7d3b40155a67",
       "documentation": "",
       "method": "get",
-      "endpoint": "v1/schema/:id",
+      "endpoint": "v1/get-schema-definition/:id",
       "responses": [
         {
           "uuid": "6f9a9177-c1aa-4eef-bb8a-67825b806f4c",
@@ -79,11 +79,45 @@
       "uuid": "629feaa5-f75a-4425-a774-c454d1a2b3f6",
       "documentation": "",
       "method": "get",
-      "endpoint": "v1/entity",
+      "endpoint": "v1/get-formatted-entities-by-type",
       "responses": [
         {
           "uuid": "ba04eecb-c3f0-4ccf-b049-7dc2f9b2605f",
           "body": "{\r\n    \"code\": {\r\n        \"status\": 1005,\r\n        \"message\": \"The entities for the 'appointments' type were founded.\"\r\n    },\r\n    \"data\": [\r\n        {\r\n            \"month\": 7,\r\n            \"day\": 19,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"REFUERZO PARVOVIROSIS Y NETEX-F\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e3fc\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 6,\r\n            \"day\": 18,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"PARVOVIROSIS Y NETEX-F\"\r\n            ],\r\n            \"pet_id\": \"2cfffca6bc3111ebad979828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e3fd\",\r\n            \"pets\": [\r\n                \"Orion Pitbull\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 7,\r\n            \"day\": 5,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"PARVOVIROSIS Y NETEX-F\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e3fe\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 7,\r\n            \"day\": 30,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"REFUERZO PARVOVIROSIS Y NETEX-F\"\r\n            ],\r\n            \"pet_id\": \"2cfffca6bc3111ebad979828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e3ff\",\r\n            \"pets\": [\r\n                \"Orion Pitbull\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 8,\r\n            \"day\": 3,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"REFUERZO PARVOVIROSIS\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e400\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 9,\r\n            \"day\": 10,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"RAC 199\"\r\n            ],\r\n            \"pet_id\": \"2cfffca6bc3111ebad979828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e401\",\r\n            \"pets\": [\r\n                \"Orion Pitbull\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 6,\r\n            \"day\": 20,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"POLIVALENTE,NETEX-F Y DX OTODECTES\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e402\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 8,\r\n            \"day\": 13,\r\n            \"year\": 2016,\r\n            \"medicines\": [\r\n                \"REFUERZO MOQUILLO\"\r\n            ],\r\n            \"pet_id\": \"2cfffca6bc3111ebad979828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e403\",\r\n            \"pets\": [\r\n                \"Orion Pitbull\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 2,\r\n            \"day\": 10,\r\n            \"year\": 2018,\r\n            \"medicines\": [\r\n                \"EDOPETIT\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e404\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        },\r\n        {\r\n            \"month\": 6,\r\n            \"day\": 21,\r\n            \"year\": 2017,\r\n            \"medicines\": [\r\n                \"RAC204\"\r\n            ],\r\n            \"pet_id\": \"2d0048fbbc3111eb97db9828\",\r\n            \"appointment_type_id\": \"f59758c04b1411eba63e70c9\",\r\n            \"_id\": \"61c1742ef3a96fee40e0e405\",\r\n            \"pets\": [\r\n                \"Cocoa Tekel\"\r\n            ],\r\n            \"appointment_types\": [\r\n                \"Vacunación\"\r\n            ]\r\n        }\r\n    ]\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "*"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "a4a6fcbc-6854-4eb1-9a75-dce00e078466",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/get-modules-by-enterprise",
+      "responses": [
+        {
+          "uuid": "00c73722-f8fc-4c01-b615-5c4a24cb36e9",
+          "body": "{\r\n    \"code\": {\r\n        \"status\": 1005,\r\n        \"message\": \"The entities for the 'appointments' type were founded.\"\r\n    },\r\n    \"data\": [\r\n        {\r\n            \"module\": {\r\n                \"_id\": {\r\n                    \"$oid\": \"5e96326701c17a0da56325ec\"\r\n                },\r\n                \"name\": \"Entities\",\r\n                \"color\": \"#456456\",\r\n                \"icon\": \"supervisor_account\",\r\n                \"description\": \"En este módulo podrá visualizar la información de sus usuarios.\"\r\n            },\r\n            \"custom_name\": \"Clientes y mascotas\"\r\n        }\r\n     \r\n        \r\n    \r\n        \r\n    ]\r\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

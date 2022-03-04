@@ -6,6 +6,21 @@ registerApplication({
   activeWhen: ["/entities"],
 });
 
+
+registerApplication({
+  name: "@adgeci/authentication",
+  app: () => System.import("@adgeci/authentication"),
+  activeWhen: ["/authentication"],
+});
+
+
+
+registerApplication({
+  name: "@adgeci/home",
+  app: () => System.import("@adgeci/home"),
+  activeWhen: ["/home"],
+});
+
 start({
   urlRerouteOnly: true,
 });

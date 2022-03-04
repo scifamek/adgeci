@@ -1,29 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { SchemaListComponent } from './schema-list/schema-list.component';
 import { EntityListComponent } from './entity-list/entity-list.component';
-import { CrudBuilderModule } from 'crud-builder';
+import { CrudBuilderModule, ListComponent } from 'crud-builder';
 import { RouterModule } from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { SchemaDetailComponent } from './schema-detail/schema-detail.component';
-
+import { EmptyRouteComponent } from 'src/app/empty-route/empty-route.component';
+import { AclCardModule } from 'angular-components-library/card';
+import { AclButtonModule } from 'angular-components-library/button';
 
 @NgModule({
+  entryComponents: [ListComponent],
   declarations: [
+    EmptyRouteComponent,
     SchemaListComponent,
     EntityListComponent,
-    SchemaDetailComponent
+    SchemaDetailComponent,
   ],
   imports: [
     CommonModule,
     CrudBuilderModule,
-    MatButtonModule,
+    AclCardModule,
+    AclButtonModule,
     MatIconModule,
     RouterModule,
-    MatCardModule
-  ]
+    MatCardModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
