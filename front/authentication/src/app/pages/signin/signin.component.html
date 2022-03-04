@@ -1,0 +1,46 @@
+<div class="container w-100 vh-100">
+  <div
+    id="login-row"
+    class="row d-flex justify-content-center align-items-center h-100"
+  >
+    <div id="login-column" class="col-md-6">
+      <div id="login-box" class="col-md-12">
+        <form [formGroup]="formGroup" id="login-form" class="form">
+          <h3 class="text-center text-info">Login</h3>
+          <div class="form-group">
+            <acl-input
+              placeholder="seposa"
+              type="input"
+              label="Username:"
+              hint="Minimo 5 caracteres"
+              left-icon="person"
+              formControlName="user"
+            ></acl-input>
+          </div>
+          <div class="form-group">
+            <acl-input
+              left-icon="key"
+              placeholder="seposa"
+              formControlName="password"
+              type="input"
+              label="Contraseña:"
+              hint="Minimo 8 caracteres"
+            ></acl-input>
+          </div>
+
+          <span class="form-group text-danger" *ngIf="error">{{ error }}</span>
+          <div class="form-group mt-2">
+            <acl-button
+              (click)="signin()"
+              size="small"
+              kind="fill"
+              color="primary"
+            >
+              Ingresar
+            </acl-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

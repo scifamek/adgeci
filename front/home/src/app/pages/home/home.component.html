@@ -1,0 +1,18 @@
+{{ token }}
+<div *ngIf="error">No se pudo obtener los modulos contratados</div>
+
+<div *ngIf="modules">
+  <h1>Estos son los módulos contratados por la empresa</h1>
+
+  <div class="row">
+    <ng-container *ngFor="let module of modules">
+      <acl-card
+        title="{{ module.custom_name }}"
+        subtitle="{{ module.module.description }}"
+        button-text="Ir"
+        [button-action]="navigate('entities')"
+      >
+      </acl-card>
+    </ng-container>
+  </div>
+</div>
