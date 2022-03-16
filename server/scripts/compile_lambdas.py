@@ -71,7 +71,7 @@ function_template = '''
       AuthorizationType: NONE
       HttpMethod: {}
       Integration:
-        Type: AWS
+        Type: AWS_PROXY
         IntegrationHttpMethod: {}
         Uri:
           Fn::Join:
