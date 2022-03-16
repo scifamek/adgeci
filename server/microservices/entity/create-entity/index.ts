@@ -16,7 +16,10 @@ let enterpriseDatabaseConnection = null;
  */
 export class EntityController extends BaseController<EntityModel> {
   @method('post')
-  async handler(body: any, context: any, callback: any) {
+  async handler(event: any, context: any, callback: any) {
+
+    const body = event.body || {};
+    console.log(event)
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
     const dataSource = new MongoDBDatasource();

@@ -1,8 +1,8 @@
 {
   "enterpriseId": "5e98666701c17a0da56325ec",
-  "collection": "users",
+  "collection": "players",
   "entity": {
-    "name":"Julian Andrés",
+    "name":"Liga caldnese",
     "last_name": "Peréz",
     "email": "epa"
   }
