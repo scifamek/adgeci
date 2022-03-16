@@ -42,10 +42,10 @@ jobs:
     - name: Create / Update Cloudformation Stack
       run: |
         aws cloudformation update-stack --stack-name adgeci-default-stack --template-body file://server/output/stack.yml --capabilities CAPABILITY_NAMED_IAM
-    # - run: |
-    #     cd server/scripts && python upload_lambdas_to_s3.py
-    #   name: Upload Lambdas to S3
-    #   if: ${{ always() }}
+    - run: |
+        cd server/scripts && python upload_lambdas_to_s3.py
+      name: Upload Lambdas to S3
+      if: ${{ always() }}
 
     - run: |
         cd server/scripts && python upload_lambdas.py
