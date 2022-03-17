@@ -24,7 +24,7 @@ export class EntityController extends BaseController<any> {
   async handler(event: any, context: any, callback: any) {
     const params = event.queryStringParameters || {};
     const headers = event.headers || {};
-    
+    console.log(event);
     if (!headers.token) {
       return {
         statusCode: 304,
@@ -40,7 +40,7 @@ export class EntityController extends BaseController<any> {
     }
 
     const decodedToken = jwt_decode(headers.token);
-
+    console.log(decodedToken);
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
     const dataSource = new MongoDBDatasource();
