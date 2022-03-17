@@ -33,8 +33,10 @@ let enterpriseDatabaseConnection = null;
  * This function is encharged of creating a new entity in a specified collection.
  */
 class EntityController extends base_controller_1.BaseController {
-    handler(body, context, callback) {
+    handler(event, context, callback) {
         return __awaiter(this, void 0, void 0, function* () {
+            const body = event.body || {};
+            console.log(event);
             const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
             const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
             const dataSource = new mongodb_datasource_1.MongoDBDatasource();

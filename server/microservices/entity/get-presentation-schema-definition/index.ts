@@ -9,6 +9,7 @@ import { EnterpriseMasterRepository } from "../../../core/repository/master/ente
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
 import { GetPresentationSchemaDefinitionUsecase } from "./get-presentation-schema-definition.usecase";
 import { method} from "../../../core/helpers/decorators";
+import jwt_decode from "jwt-decode";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -17,7 +18,29 @@ let enterpriseDatabaseConnection = null;
  */
 export class EntityController extends BaseController<any> {
   @method('get')
-  async handler(body: any, context: any, callback: any) {
+  async handler(event: any, context: any, callback: any) {
+
+    const params = event.queryStringParameters || {};
+    const headers = event.headers || {};
+    
+    if (!headers.token) {
+      return {
+        statusCode: 304,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: {
+            status: 304,
+            message: "Token is not present in the header",
+          },
+          data: {},
+        } as ResponseModel<any>),
+      };
+    }
+
+    const decodedToken = jwt_decode(headers.token);
+
+
+
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
     const dataSource = new MongoDBDatasource();
@@ -30,7 +53,7 @@ export class EntityController extends BaseController<any> {
       masterDatabaseConnection
     );
     const enterpriseObj = await enterpriseMasterRepository.getEnterpriseById(
-      body["enterpriseId"]
+      decodedToken["enterpriseId"]
     );
     if (enterpriseObj && enterpriseObj.database_name) {
       enterpriseDatabaseConnection = await dataSource.getConnection(
@@ -52,7 +75,7 @@ export class EntityController extends BaseController<any> {
       presentationRepository
     );
 
-    const response = await usecase.call(body);
+    const response = await usecase.call(params);
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
@@ -60,7 +83,7 @@ export class EntityController extends BaseController<any> {
         code: buildResponseCode(
           BASE_CODE,
           RESPONSE_CODES_MAPPER.PRESENTATION_SUCCESSFULLY_FOUNDED,
-          { ...body, ...enterpriseObj }
+          { ...params, ...enterpriseObj }
         ),
         data: {
           ...response,

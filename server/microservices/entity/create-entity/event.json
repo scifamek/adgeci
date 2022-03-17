@@ -1,9 +1,13 @@
 {
-  "enterpriseId": "5e98666701c17a0da56325ec",
-  "collection": "players",
-  "entity": {
-    "name":"Liga caldnese",
-    "last_name": "Peréz",
-    "email": "epa"
+  "body": {
+    "collection": "players",
+    "entity": {
+      "name": "Liga caldnese",
+      "last_name": "Peréz",
+      "email": "epa"
+    }
+  },
+  "headers": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRlcnByaXNlSWQiOiI1ZTk4NjY2NzAxYzE3YTBkYTU2MzI1ZWMifQ.YHRie_L-q2_n-RFXxvrfv61j8Cmf_h7txfb22J_fEro"
   }
 }

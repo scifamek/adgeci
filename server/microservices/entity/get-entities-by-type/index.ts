@@ -7,8 +7,12 @@ import { SchemaEnterpriseRepository } from "../../../core/repository/enterprise/
 import { SchemaMapper } from "../../../core/repository/enterprise/schemas/schema.mapper";
 import { EnterpriseMasterRepository } from "../../../core/repository/master/enterprise/enterprise.master.repository";
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
-import { GetEntitiesByTypeUsecase, Param } from "./get-entities-by-type.usecase";
-import { method} from "../../../core/helpers/decorators";
+import {
+  GetEntitiesByTypeUsecase,
+  Param,
+} from "./get-entities-by-type.usecase";
+import { method } from "../../../core/helpers/decorators";
+import jwt_decode from "jwt-decode";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -16,10 +20,26 @@ let enterpriseDatabaseConnection = null;
  * This function is encharged of creating a new entity in a specified collection.
  */
 export class EntityController extends BaseController<any> {
-  @method('get')
+  @method("get")
   async handler(event: any, context: any, callback: any) {
-    console.log(event);
-    const body = event.body || {}; 
+    const params = event.queryStringParameters || {};
+    const headers = event.headers || {};
+    
+    if (!headers.token) {
+      return {
+        statusCode: 304,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: {
+            status: 304,
+            message: "Token is not present in the header",
+          },
+          data: {},
+        } as ResponseModel<any>),
+      };
+    }
+
+    const decodedToken = jwt_decode(headers.token);
 
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
@@ -33,7 +53,7 @@ export class EntityController extends BaseController<any> {
       masterDatabaseConnection
     );
     const enterpriseObj = await enterpriseMasterRepository.getEnterpriseById(
-      body["enterpriseId"]
+      decodedToken["enterpriseId"]
     );
     if (enterpriseObj && enterpriseObj.database_name) {
       enterpriseDatabaseConnection = await dataSource.getConnection(
@@ -50,9 +70,12 @@ export class EntityController extends BaseController<any> {
     const entityRepository = new EntityEnterpriseRepository(
       enterpriseDatabaseConnection
     );
-    const usecase = new GetEntitiesByTypeUsecase(schemaEnterpriseRepository,entityRepository);
-    
-    const response = await usecase.call(body as Param);
+    const usecase = new GetEntitiesByTypeUsecase(
+      schemaEnterpriseRepository,
+      entityRepository
+    );
+
+    const response = await usecase.call(params as Param);
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
@@ -60,10 +83,10 @@ export class EntityController extends BaseController<any> {
         code: buildResponseCode(
           BASE_CODE,
           RESPONSE_CODES_MAPPER.ENTITIES_BY_TYPE_FOUNDED_SUCCESSFULLY,
-          body
+          params
         ),
         data: {
-          ...response
+          ...response,
         },
       } as ResponseModel<any>),
     };

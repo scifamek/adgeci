@@ -8,6 +8,7 @@ import { method} from "../../../core/helpers/decorators";
 import { EntityModel } from "./entity.model";
 import { CreateEntityUsecase, Param } from "./create-entity.usecase";
 import { BASE_CODE, RESPONSE_CODES_MAPPER } from "../response.constants";
+import jwt_decode from "jwt-decode";
 
 let masterDatabaseConnection = null;
 let enterpriseDatabaseConnection = null;
@@ -18,8 +19,29 @@ export class EntityController extends BaseController<EntityModel> {
   @method('post')
   async handler(event: any, context: any, callback: any) {
 
+
     const body = event.body || {};
-    console.log(event)
+    const headers = event.headers || {};
+    
+    if (!headers.token) {
+      return {
+        statusCode: 304,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: {
+            status: 304,
+            message: "Token is not present in the header",
+          },
+          data: {},
+        } as ResponseModel<any>),
+      };
+    }
+
+    const decodedToken = jwt_decode(headers.token);
+
+
+
+
     const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
     const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
     const dataSource = new MongoDBDatasource();
@@ -32,7 +54,7 @@ export class EntityController extends BaseController<EntityModel> {
       masterDatabaseConnection
     );
     const enterpriseObj = await enterpriseMasterRepository.getEnterpriseById(
-      body["enterpriseId"]
+      decodedToken["enterpriseId"]
     );
     if (enterpriseObj && enterpriseObj.database_name) {
       enterpriseDatabaseConnection = await dataSource.getConnection(
