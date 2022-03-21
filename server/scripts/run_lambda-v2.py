@@ -29,7 +29,7 @@ event_file = list(glob.iglob(
 
 
 event_file = event_file.replace(f"output/{lambda_name}/", "")
-execution_command = f"cd .. && lambda-local -l {execution_file} -e {event_file} -t 5 -E {{{add_parameters(enviroment)}}}"
+execution_command = f"cd .. && lambda-local -l {execution_file} -e {event_file} -t 8 -E {{{add_parameters(enviroment)}}}"
 
 
 os.system(execution_command)

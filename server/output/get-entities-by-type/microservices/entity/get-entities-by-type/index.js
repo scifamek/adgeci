@@ -41,9 +41,9 @@ let enterpriseDatabaseConnection = null;
 class EntityController extends base_controller_1.BaseController {
     handler(event, context, callback) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(event, 123);
             const params = event.queryStringParameters || {};
             const headers = event.headers || {};
+            console.log(event);
             if (!headers.token) {
                 return {
                     statusCode: 304,
@@ -58,6 +58,7 @@ class EntityController extends base_controller_1.BaseController {
                 };
             }
             const decodedToken = (0, jwt_decode_1.default)(headers.token);
+            console.log(decodedToken);
             const MASTER_DATABASE_NAME = process.env["MASTER_DATABASE_NAME"];
             const CLUSTER_URI = process.env["MONGODB_ATLAS_CLUSTER_URI"];
             const dataSource = new mongodb_datasource_1.MongoDBDatasource();
