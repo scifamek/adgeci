@@ -2,12 +2,12 @@
   "body": {
     "collection": "players",
     "entity": {
-      "name": "Liga caldnese",
+      "name": "Novak",
       "last_name": "Peréz",
       "email": "epa"
     }
   },
   "headers": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRlcnByaXNlSWQiOiI1ZTk4NjY2NzAxYzE3YTBkYTU2MzI1ZWMifQ.YHRie_L-q2_n-RFXxvrfv61j8Cmf_h7txfb22J_fEro"
+    "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbnRlcnByaXNlLWlkIjoiNWU5ODY2NjcwMWMxN2EwZGE1NjMyNWVjIiwiZGF0YWJhc2UtbmFtZSI6ImRyb29weV81ZTk4NjY2NzAxYzE3YTBkYTU2MzI1ZWMiLCJyb2xlcyI6WyJhZG1pbiJdfQ.OeQy7bUf_Eh6Mt4SdoCWrpUYgn_I-gjXEcOJZAxfcgMMm9bGqNTbIx0kMArr9bZSQtJMmTDK_NYRX5Q-JWx8ug"
   }
 }

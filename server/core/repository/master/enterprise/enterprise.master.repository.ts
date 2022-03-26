@@ -1,18 +1,16 @@
+import { BaseDatasource } from "../../datasource/base.datasource";
+import { IEnterpriseModel } from "../../../domain/models/enterprise.model";
+import { Observable } from "rxjs";
 
-import { ObjectId } from "mongodb";
+export class EnterpriseMasterRepository {
+  constructor(private masterDataSource: BaseDatasource<IEnterpriseModel>) {}
 
-export class EnterpriseMasterRepository{
+   getEnterpriseById(enterpriseId: string): Observable<IEnterpriseModel> {
+    const enterpriseObj =  this.masterDataSource.getById<IEnterpriseModel>(
+      "enterprises",
+      enterpriseId
+    );
+    return enterpriseObj;
 
-  constructor(private masterDataSource: any ){
   }
-
-    async getEnterpriseById (enterpriseId: string) {
-      const enterpriseObj = await this.masterDataSource
-      .collection("enterprises")
-      .find({
-        _id: ObjectId(enterpriseId),
-      })
-      .toArray();
-      return enterpriseObj[0];
-    }
 }

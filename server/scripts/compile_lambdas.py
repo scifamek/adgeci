@@ -129,6 +129,7 @@ for microservice in microservices:
     path = f"{microservice}/*"
     lambdas_path = list(map(normalize, list(glob.iglob(path))))
     for lambda_path in lambdas_path:
+      if('create-entity' in lambda_path):
         index_path = f'{lambda_path}/index.ts'
         if(os.path.isfile(index_path)):
             with open(index_path, "r", encoding="utf-8") as t:

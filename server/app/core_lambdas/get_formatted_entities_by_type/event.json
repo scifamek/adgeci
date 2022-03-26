@@ -1,7 +1,0 @@
-{
-	"enterprise_id": "5e98666701c17a0da56325ec",
-	"collection": "appointments",
-	"page": 0,
-	"sizePage": 1,
-	"definition": ["day", "month", "year", "pet", "appointment_type", "medicines", "actions"]
-}

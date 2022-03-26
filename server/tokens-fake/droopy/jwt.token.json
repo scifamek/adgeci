@@ -1,0 +1,11 @@
+{
+  "header": {
+    "alg": "HS512",
+    "typ": "JWT"
+  },
+  "payload": {
+    "enterprise-id": "5e98666701c17a0da56325ec",
+    "database-name": "droopy_5e98666701c17a0da56325ec",
+    "roles": ["admin"]
+  }
+}

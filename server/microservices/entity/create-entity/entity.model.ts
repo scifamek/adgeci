@@ -1,3 +1,3 @@
-export interface EntityModel {
+export interface IEntityModel {
   [index: string]: any;
 }

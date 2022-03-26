@@ -21,7 +21,8 @@
   "author": "Scifamek",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "rxjs": "6.0.0"
   },
   "devDependencies": {
     "@types/mongodb": "^4.0.7",
