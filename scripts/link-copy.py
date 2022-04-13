@@ -19,6 +19,10 @@ DIST_FOLDER = 'dist'
 
 ps = [
     {
+        'name':'adgeci-core-utils',
+        'root': INDEX_FOLDER
+    },
+    {
         'name':'angular-components-library',
         'root': INDEX_FOLDER
     },

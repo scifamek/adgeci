@@ -1,0 +1,38 @@
+<div class="container">
+  <header class="mt-3">
+    <section>
+      <h1>Módulo de entidades</h1>
+      <p class="my-3">
+        Estas son las entidades configuradas para el modulo "Entidades"
+      </p>
+    </section>
+    <section>
+      <figure>
+        <img src="./../../assets/module/module-icon.png" alt="" />
+      </figure>
+    </section>
+  </header>
+
+  <div class="row d-flex">
+    <acl-card
+      class="col-lg-3 col-md-3 col-xl-3 col-sm-6 align-items-center flex-column"
+      *ngFor="let schema of ($schemas | async)?.data"
+      title=" {{ schema.display }}"
+      subtitle="  {{ schema.collection }}"
+    >
+      <span>
+        {{ schema.presentation.icon }}
+      </span>
+
+      <div class="d-flex w-100 justify-content-around mt-3">
+        <acl-button size="small" (click)="goToListItems(schema)">
+          Listado
+        </acl-button>
+
+        <acl-button size="small"  kind="outline" (click)="goToDetail(schema)">
+          Esquema
+        </acl-button>
+      </div>
+    </acl-card>
+  </div>
+</div>
