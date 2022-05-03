@@ -3,7 +3,7 @@
     "_id": {
       "$oid": "5e96326701c17a0da56325ec"
     },
-    "name": "Value Entity",
+    "name": "Entities",
     "color": "#456456",
     "icon": "supervisor_account",
     "description": "En este módulo podrá visualizar la información de sus entidades de valor."
